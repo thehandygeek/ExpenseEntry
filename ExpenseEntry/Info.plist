@@ -44,5 +44,18 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UTExportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Comma Separated Document</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.touchsciences.expenses.csv</string>
+		</dict>
+	</array>
 </dict>
 </plist>
