@@ -12,10 +12,25 @@ extension ExpenseEntry {
     func toDateString() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
-        return formatter.string(from: self.date as! Date)
+        return formatter.string(from: self.date)
+    }
+    
+    func toMonthString() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM-yyyy"
+        return formatter.string(from: self.date)
     }
     
     func toAmountString() -> String {
-        return self.amount!.stringValue;
+        let currencyFormatter = NumberFormatter()
+        currencyFormatter.usesGroupingSeparator = true
+        
+        currencyFormatter.numberStyle = .currency
+        // localize to your grouping and decimal separator
+        currencyFormatter.locale = NSLocale.current
+        guard let amountString = currencyFormatter.string(from: amount as NSDecimalNumber) else {
+            return ""
+        }
+        return amountString
     }
 }

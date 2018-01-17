@@ -18,16 +18,11 @@ class ExpenseEntryViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var amountText: UITextField!
     @IBOutlet weak var countLabel: UILabel!
     
-    fileprivate var expensesAPI: ExpensesAPI?
+    fileprivate var expensesModel = ExpensesModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        self.expensesAPI = ExpensesAPI(context: managedContext)
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,7 +39,11 @@ class ExpenseEntryViewController: UIViewController, UITextFieldDelegate {
 
 
     @IBAction func submitButtonClicked(sender: UIButton) {
-        self.expensesAPI!.addExpense(date: selectedDate.date, type: typeText.text!, amount: NSDecimalNumber(string: amountText.text))
+        guard let amountTextValue = amountText.text, let amount = Decimal(string: amountTextValue) else {
+            return
+        }
+        let newEntry = ExpenseEntry(amount: amount, date: selectedDate.date, type: typeText.text!)
+        expensesModel.expenses.append(newEntry)
         self.updateCountLabel()
         UserDefaults.standard.setValue(self.typeText.text, forKey: ExpenseEntryViewController.kExpenseTypeKey)
         
@@ -64,7 +63,7 @@ class ExpenseEntryViewController: UIViewController, UITextFieldDelegate {
     }
     
     func updateCountLabel() {
-        countLabel.text = String(format: "Record count: %@", (self.expensesAPI!.getExpenseCount().description))
+        countLabel.text = String(format: "Record count: %@", (expensesModel.expenses.count))
     }
 }
 

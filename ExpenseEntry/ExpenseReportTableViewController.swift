@@ -11,8 +11,7 @@ import CoreData
 
 class ExpenseReportTableViewController: UITableViewController {
     
-    fileprivate var expenses: [ExpenseEntry] = []
-    fileprivate var expensesAPI: ExpensesAPI?
+    private var expensesModel = ExpensesModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,11 +21,6 @@ class ExpenseReportTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        self.expensesAPI = ExpensesAPI(context: managedContext)
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,10 +33,8 @@ class ExpenseReportTableViewController: UITableViewController {
         
         self.navigationController?.setToolbarHidden(false, animated: true)
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
-        
-        // Load latest
-        self.expenses = self.expensesAPI!.getExpenses()
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
@@ -67,8 +59,8 @@ class ExpenseReportTableViewController: UITableViewController {
         let alertViewController = UIAlertController(title: "Delete Expenses", message: "Are you sure you want to delete all expenses?", preferredStyle: UIAlertControllerStyle.alert)
         let okAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:
             {(alert: UIAlertAction!) in
-                self.expensesAPI?.deleteAll()
-                self.expenses = self.expensesAPI!.getExpenses()
+                self.expensesModel.expenses.removeAll()
+                try? self.expensesModel.save()
                 self.tableView.reloadData()
         })
         let cancelAlertAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil)
@@ -78,14 +70,15 @@ class ExpenseReportTableViewController: UITableViewController {
     }
     
     func exportToFileURL() -> URL? {
-        let contents = self.expensesAPI!.generateCSVContent()
+        let contents = expensesModel.generateCSVContent()
 
         guard let path = FileManager.default
             .urls(for: .documentDirectory, in: .userDomainMask).first else {
                 return nil
         }
         
-        let saveFileURL = path.appendingPathComponent("expenses.csv")
+        
+        let saveFileURL = path.appendingPathComponent(expensesModel.expenses[0].toMonthString() + "-Expenses.csv")
         do {
             try (contents as String).write(to: saveFileURL, atomically: true, encoding: String.Encoding.utf8)
         } catch let error as NSError  {
@@ -102,7 +95,7 @@ class ExpenseReportTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return expenses.count
+        return expensesModel.expenses.count
     }
 
     
@@ -110,7 +103,7 @@ class ExpenseReportTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ExpenseEntry", for: indexPath) as! ExpenseEntryTableViewCell
 
         // Configure the cell...
-        let expenseEntry = expenses[indexPath.row]
+        let expenseEntry = expensesModel.expenses[indexPath.row]
         cell.dateLabel.text = expenseEntry.toDateString()
         cell.typeLabel.text = expenseEntry.type
         cell.amountLabel.text = String(format: "$%@", expenseEntry.toAmountString())
@@ -133,9 +126,8 @@ class ExpenseReportTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            let expenseEntry = expenses[indexPath.row]
-            self.expensesAPI?.deleteExpense(expense: expenseEntry)
-            self.expenses.remove(at: self.expenses.index(of: expenseEntry)!)
+            expensesModel.expenses.remove(at: indexPath.row)
+            try? expensesModel.save()
             self.tableView.reloadData()
         }
     }

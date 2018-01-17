@@ -57,5 +57,7 @@
 			<string>com.touchsciences.expenses.csv</string>
 		</dict>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>Camera usage description</string>
 </dict>
 </plist>
