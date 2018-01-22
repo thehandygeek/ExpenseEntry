@@ -7,20 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1BE67CEBFE5E278DFD6DBFF4 /* Pods_ExpenseEntry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30992C3738E02D422D551E29 /* Pods_ExpenseEntry.framework */; };
 		D2BC7DD11E09B25F0040C489 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC7DD01E09B25F0040C489 /* AppDelegate.swift */; };
 		D2BC7DD31E09B25F0040C489 /* ExpenseEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC7DD21E09B25F0040C489 /* ExpenseEntryViewController.swift */; };
 		D2BC7DD81E09B25F0040C489 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2BC7DD61E09B25F0040C489 /* Main.storyboard */; };
 		D2BC7DDA1E09B25F0040C489 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2BC7DD91E09B25F0040C489 /* Assets.xcassets */; };
 		D2BC7DDD1E09B25F0040C489 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2BC7DDB1E09B25F0040C489 /* LaunchScreen.storyboard */; };
+		FA8F556320162DFF005C1127 /* Data+SHA.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8F556220162DFF005C1127 /* Data+SHA.swift */; };
 		FAB5B6D71E0ABE20005CC6F7 /* ExpenseReportTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB5B6D61E0ABE20005CC6F7 /* ExpenseReportTableViewController.swift */; };
 		FAB5B6D91E0ABF12005CC6F7 /* ExpenseEntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB5B6D81E0ABF12005CC6F7 /* ExpenseEntryTableViewCell.swift */; };
-		FAB5B6DD1E0AF196005CC6F7 /* ExpenseEntry+Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB5B6DC1E0AF196005CC6F7 /* ExpenseEntry+Conversion.swift */; };
 		FAFA23AB200FBE39006A4BBA /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFA23AA200FBE39006A4BBA /* CameraViewController.swift */; };
 		FAFA23AE200FC420006A4BBA /* ExpenseEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFA23AD200FC420006A4BBA /* ExpenseEntry.swift */; };
 		FAFA23B0200FC498006A4BBA /* ExpensesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFA23AF200FC498006A4BBA /* ExpensesModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		30992C3738E02D422D551E29 /* Pods_ExpenseEntry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExpenseEntry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B78742EB0B587B9490714070 /* Pods-ExpenseEntry.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpenseEntry.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ExpenseEntry/Pods-ExpenseEntry.debug.xcconfig"; sourceTree = "<group>"; };
+		D062C2E541616654AB7E0F8F /* Pods-ExpenseEntry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpenseEntry.release.xcconfig"; path = "Pods/Target Support Files/Pods-ExpenseEntry/Pods-ExpenseEntry.release.xcconfig"; sourceTree = "<group>"; };
 		D2BC7DCD1E09B25F0040C489 /* ExpenseEntry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseEntry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2BC7DD01E09B25F0040C489 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2BC7DD21E09B25F0040C489 /* ExpenseEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseEntryViewController.swift; sourceTree = "<group>"; };
@@ -28,9 +32,11 @@
 		D2BC7DD91E09B25F0040C489 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D2BC7DDC1E09B25F0040C489 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D2BC7DDE1E09B25F0040C489 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA8F555B201287E8005C1127 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		FA8F555E20162B61005C1127 /* ExpenseEntryBridging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExpenseEntryBridging.h; sourceTree = "<group>"; };
+		FA8F556220162DFF005C1127 /* Data+SHA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+SHA.swift"; sourceTree = "<group>"; };
 		FAB5B6D61E0ABE20005CC6F7 /* ExpenseReportTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseReportTableViewController.swift; sourceTree = "<group>"; };
 		FAB5B6D81E0ABF12005CC6F7 /* ExpenseEntryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseEntryTableViewCell.swift; sourceTree = "<group>"; };
-		FAB5B6DC1E0AF196005CC6F7 /* ExpenseEntry+Conversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ExpenseEntry+Conversion.swift"; sourceTree = "<group>"; };
 		FAFA23AA200FBE39006A4BBA /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		FAFA23AD200FC420006A4BBA /* ExpenseEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseEntry.swift; sourceTree = "<group>"; };
 		FAFA23AF200FC498006A4BBA /* ExpensesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesModel.swift; sourceTree = "<group>"; };
@@ -41,17 +47,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BE67CEBFE5E278DFD6DBFF4 /* Pods_ExpenseEntry.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		33A6A8D60A95DE9A1856397B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B78742EB0B587B9490714070 /* Pods-ExpenseEntry.debug.xcconfig */,
+				D062C2E541616654AB7E0F8F /* Pods-ExpenseEntry.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		C0E680992B336034B5490F40 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FA8F555B201287E8005C1127 /* libz.tbd */,
+				30992C3738E02D422D551E29 /* Pods_ExpenseEntry.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D2BC7DC41E09B25F0040C489 = {
 			isa = PBXGroup;
 			children = (
 				D2BC7DCF1E09B25F0040C489 /* ExpenseEntry */,
 				D2BC7DCE1E09B25F0040C489 /* Products */,
+				33A6A8D60A95DE9A1856397B /* Pods */,
+				C0E680992B336034B5490F40 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,18 +94,27 @@
 			isa = PBXGroup;
 			children = (
 				FAFA23AC200FC407006A4BBA /* Model */,
+				FA8F556120162DDF005C1127 /* Utilities */,
 				D2BC7DD01E09B25F0040C489 /* AppDelegate.swift */,
 				D2BC7DD21E09B25F0040C489 /* ExpenseEntryViewController.swift */,
 				FAB5B6D61E0ABE20005CC6F7 /* ExpenseReportTableViewController.swift */,
 				FAB5B6D81E0ABF12005CC6F7 /* ExpenseEntryTableViewCell.swift */,
-				FAB5B6DC1E0AF196005CC6F7 /* ExpenseEntry+Conversion.swift */,
+				FAFA23AA200FBE39006A4BBA /* CameraViewController.swift */,
 				D2BC7DD61E09B25F0040C489 /* Main.storyboard */,
 				D2BC7DD91E09B25F0040C489 /* Assets.xcassets */,
 				D2BC7DDB1E09B25F0040C489 /* LaunchScreen.storyboard */,
 				D2BC7DDE1E09B25F0040C489 /* Info.plist */,
-				FAFA23AA200FBE39006A4BBA /* CameraViewController.swift */,
+				FA8F555E20162B61005C1127 /* ExpenseEntryBridging.h */,
 			);
 			path = ExpenseEntry;
+			sourceTree = "<group>";
+		};
+		FA8F556120162DDF005C1127 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				FA8F556220162DFF005C1127 /* Data+SHA.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		FAFA23AC200FC407006A4BBA /* Model */ = {
@@ -97,9 +133,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D2BC7DE11E09B25F0040C489 /* Build configuration list for PBXNativeTarget "ExpenseEntry" */;
 			buildPhases = (
+				C774D6C670E27D9E6DC53D29 /* [CP] Check Pods Manifest.lock */,
 				D2BC7DC91E09B25F0040C489 /* Sources */,
 				D2BC7DCA1E09B25F0040C489 /* Frameworks */,
 				D2BC7DCB1E09B25F0040C489 /* Resources */,
+				C9366A75ADC50CFC3D5F1B05 /* [CP] Embed Pods Frameworks */,
+				48CBF8533326E7FFBC3A85C2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -159,6 +198,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		48CBF8533326E7FFBC3A85C2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ExpenseEntry/Pods-ExpenseEntry-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C774D6C670E27D9E6DC53D29 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ExpenseEntry-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C9366A75ADC50CFC3D5F1B05 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ExpenseEntry/Pods-ExpenseEntry-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SSZipArchive/SSZipArchive.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SSZipArchive.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ExpenseEntry/Pods-ExpenseEntry-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D2BC7DC91E09B25F0040C489 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -166,12 +259,12 @@
 			files = (
 				D2BC7DD11E09B25F0040C489 /* AppDelegate.swift in Sources */,
 				FAB5B6D71E0ABE20005CC6F7 /* ExpenseReportTableViewController.swift in Sources */,
+				FA8F556320162DFF005C1127 /* Data+SHA.swift in Sources */,
 				FAB5B6D91E0ABF12005CC6F7 /* ExpenseEntryTableViewCell.swift in Sources */,
 				FAFA23B0200FC498006A4BBA /* ExpensesModel.swift in Sources */,
 				D2BC7DD31E09B25F0040C489 /* ExpenseEntryViewController.swift in Sources */,
 				FAFA23AB200FBE39006A4BBA /* CameraViewController.swift in Sources */,
 				FAFA23AE200FC420006A4BBA /* ExpenseEntry.swift in Sources */,
-				FAB5B6DD1E0AF196005CC6F7 /* ExpenseEntry+Conversion.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,13 +397,17 @@
 		};
 		D2BC7DE21E09B25F0040C489 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B78742EB0B587B9490714070 /* Pods-ExpenseEntry.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = R9G77R8PMG;
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = ExpenseEntry/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.touchsciences.ExpenseEntry;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = ExpenseEntry/ExpenseEntryBridging.h;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
@@ -318,13 +415,17 @@
 		};
 		D2BC7DE31E09B25F0040C489 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D062C2E541616654AB7E0F8F /* Pods-ExpenseEntry.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = R9G77R8PMG;
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = ExpenseEntry/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.touchsciences.ExpenseEntry;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = ExpenseEntry/ExpenseEntryBridging.h;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};

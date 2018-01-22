@@ -17,12 +17,16 @@ class ExpenseEntryViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var typeText: UITextField!
     @IBOutlet weak var amountText: UITextField!
     @IBOutlet weak var countLabel: UILabel!
+    @IBOutlet weak var recieptImageView: UIImageView!
     
-    fileprivate var expensesModel = ExpensesModel()
+    private var expensesModel = ExpensesModel()
+    private var recieptImage: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        self.typeText.text = UserDefaults.standard.object(forKey: ExpenseEntryViewController.kExpenseTypeKey) as! String?
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,18 +36,32 @@ class ExpenseEntryViewController: UIViewController, UITextFieldDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.typeText.text = UserDefaults.standard.object(forKey: ExpenseEntryViewController.kExpenseTypeKey) as! String?
-        
         self.updateCountLabel()
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowCamera" {
+            if let cameraViewController = segue.destination as? CameraViewController {
+                cameraViewController.delegate = self
+            }
+        }
+        else if segue.identifier == "ShowReport" {
+            if let reportController = segue.destination as? ExpenseReportTableViewController {
+                reportController.set(expensesModel: expensesModel)
+            }
+        }
+    }
 
     @IBAction func submitButtonClicked(sender: UIButton) {
-        guard let amountTextValue = amountText.text, let amount = Decimal(string: amountTextValue) else {
+        guard let amountTextValue = amountText.text,
+            let amount = Decimal(string: amountTextValue),
+            let image = recieptImage,
+            let imageData = UIImageJPEGRepresentation(image, 0.8) else {
             return
         }
-        let newEntry = ExpenseEntry(amount: amount, date: selectedDate.date, type: typeText.text!)
+        let newEntry = ExpenseEntry(amount: amount, date: selectedDate.date, type: typeText.text!, recieptImage:imageData)
         expensesModel.expenses.append(newEntry)
+        try? expensesModel.save()
         self.updateCountLabel()
         UserDefaults.standard.setValue(self.typeText.text, forKey: ExpenseEntryViewController.kExpenseTypeKey)
         
@@ -63,7 +81,19 @@ class ExpenseEntryViewController: UIViewController, UITextFieldDelegate {
     }
     
     func updateCountLabel() {
-        countLabel.text = String(format: "Record count: %@", (expensesModel.expenses.count))
+        countLabel.text = String(format: "Record count: %d", expensesModel.expenses.count)
     }
+    
+    
+}
+
+extension ExpenseEntryViewController: CameraViewContollerDelegate {
+    func dismiss(viewController: CameraViewController, image: UIImage) {
+        recieptImageView.image = image
+        recieptImage = image
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
 }
 

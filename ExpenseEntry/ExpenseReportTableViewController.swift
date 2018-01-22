@@ -11,7 +11,7 @@ import CoreData
 
 class ExpenseReportTableViewController: UITableViewController {
     
-    private var expensesModel = ExpensesModel()
+    private var expensesModel: ExpensesModel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,14 +41,22 @@ class ExpenseReportTableViewController: UITableViewController {
         self.navigationController?.setToolbarHidden(true, animated: true)
     }
     
+    func set(expensesModel: ExpensesModel) {
+        self.expensesModel = expensesModel
+    }
+    
     @IBAction func shareButtonAction(sender: UIBarButtonItem) {
         guard let url = self.exportToFileURL() else {
                 return
         }
         
         let activityViewController = UIActivityViewController(
-            activityItems: ["Test message.", url],
+            activityItems: ["Expenses.", url],
             applicationActivities: nil)
+        activityViewController.completionWithItemsHandler = {
+            (activity, success, items, error) in
+            try? FileManager.default.removeItem(at: url)
+        }
         if let popoverPresentationController = activityViewController.popoverPresentationController {
             popoverPresentationController.barButtonItem = (sender)
         }
@@ -59,8 +67,8 @@ class ExpenseReportTableViewController: UITableViewController {
         let alertViewController = UIAlertController(title: "Delete Expenses", message: "Are you sure you want to delete all expenses?", preferredStyle: UIAlertControllerStyle.alert)
         let okAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:
             {(alert: UIAlertAction!) in
-                self.expensesModel.expenses.removeAll()
-                try? self.expensesModel.save()
+                self.expensesModel!.expenses.removeAll()
+                try? self.expensesModel!.save()
                 self.tableView.reloadData()
         })
         let cancelAlertAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil)
@@ -70,22 +78,38 @@ class ExpenseReportTableViewController: UITableViewController {
     }
     
     func exportToFileURL() -> URL? {
-        let contents = expensesModel.generateCSVContent()
-
+//        let expense = expensesModel.expenses[0]
+//        let blankDocPath: String = Bundle.main.path(forResource: "blank", ofType: "xlsx")!
+//        let spreadsheet = BRAOfficeDocumentPackage.open(blankDocPath)!
+//        let firstWorksheet = spreadsheet.workbook.worksheets[0] as! BRAWorksheet
+//        var cell = firstWorksheet.cell(forCellReference: "A1", shouldCreate: true)!
+//        cell.setStringValue(expense.type)
+//        cell = firstWorksheet.cell(forCellReference: "B1", shouldCreate: true)!
+//        cell.setStringValue(expense.toDateString())
+//        cell = firstWorksheet.cell(forCellReference: "C1", shouldCreate: true)!
+//        cell.setStringValue(String(expense.toAmountString()))
+//        let image = UIImage(data: expense.recieptImage)
+//        //preserveTransparency force JPEG (NO) or PNG (YES)
+//        let drawing = firstWorksheet.add(image, inCellReferenced: "D20", withOffset: CGPoint.zero, size: CGSize.init(width: 200, height: 200), preserveTransparency: false)
+//        //let drawing: BRAWorksheetDrawing = firstWorksheet.add(image, betweenCellsReferenced: "D1", and: "E10", with: UIEdgeInsets.zero, preserveTransparency: false)
+//        //Set drawing insets (percentage)
+//        drawing!.insets = UIEdgeInsetsMake(0.0, 0.0, 0.5, 0.5)
+//        let sheetImage = firstWorksheet.image(forCellReference: "D1")
+//        let sheetImageData = UIImageJPEGRepresentation(sheetImage!.uiImage!, 0.8)
+//        guard let path = FileManager.default
+//            .urls(for: .documentDirectory, in: .userDomainMask).first else {
+//                return nil
+//        }
+//        let saveFileURL = path.appendingPathComponent(expensesModel.expenses[0].toMonthString() + "-Expenses.xlsx")
+//        spreadsheet.save(as: saveFileURL.path)
+//
+//        return saveFileURL
         guard let path = FileManager.default
             .urls(for: .documentDirectory, in: .userDomainMask).first else {
                 return nil
         }
-        
-        
-        let saveFileURL = path.appendingPathComponent(expensesModel.expenses[0].toMonthString() + "-Expenses.csv")
-        do {
-            try (contents as String).write(to: saveFileURL, atomically: true, encoding: String.Encoding.utf8)
-        } catch let error as NSError  {
-            print("Could not save \(error), \(error.userInfo)")
-        }
 
-        return saveFileURL
+        return expensesModel!.generateZip(path: path)
     }
 
     // MARK: - Table view data source
@@ -95,7 +119,7 @@ class ExpenseReportTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return expensesModel.expenses.count
+        return expensesModel!.expenses.count
     }
 
     
@@ -103,10 +127,11 @@ class ExpenseReportTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ExpenseEntry", for: indexPath) as! ExpenseEntryTableViewCell
 
         // Configure the cell...
-        let expenseEntry = expensesModel.expenses[indexPath.row]
+        let expenseEntry = expensesModel!.expenses[indexPath.row]
         cell.dateLabel.text = expenseEntry.toDateString()
         cell.typeLabel.text = expenseEntry.type
-        cell.amountLabel.text = String(format: "$%@", expenseEntry.toAmountString())
+        cell.amountLabel.text = expenseEntry.toAmountString()
+        cell.recieptImage.image = UIImage(data: expenseEntry.recieptImage)
         
 
         return cell
@@ -126,8 +151,8 @@ class ExpenseReportTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            expensesModel.expenses.remove(at: indexPath.row)
-            try? expensesModel.save()
+            expensesModel!.expenses.remove(at: indexPath.row)
+            try? expensesModel!.save()
             self.tableView.reloadData()
         }
     }
