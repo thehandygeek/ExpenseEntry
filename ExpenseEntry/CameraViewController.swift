@@ -72,7 +72,7 @@ class CameraViewController: UIViewController {
         let photoSettings = AVCapturePhotoSettings()
         // Set photo settings for our need
         photoSettings.isAutoStillImageStabilizationEnabled = true
-        photoSettings.isHighResolutionPhotoEnabled = true
+        photoSettings.isHighResolutionPhotoEnabled = false
         photoSettings.flashMode = .auto
         // Call capturePhoto method by passing our photo settings and a
         // delegate implementing AVCapturePhotoCaptureDelegate
