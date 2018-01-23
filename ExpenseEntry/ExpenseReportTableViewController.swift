@@ -78,32 +78,6 @@ class ExpenseReportTableViewController: UITableViewController {
     }
     
     func exportToFileURL() -> URL? {
-//        let expense = expensesModel.expenses[0]
-//        let blankDocPath: String = Bundle.main.path(forResource: "blank", ofType: "xlsx")!
-//        let spreadsheet = BRAOfficeDocumentPackage.open(blankDocPath)!
-//        let firstWorksheet = spreadsheet.workbook.worksheets[0] as! BRAWorksheet
-//        var cell = firstWorksheet.cell(forCellReference: "A1", shouldCreate: true)!
-//        cell.setStringValue(expense.type)
-//        cell = firstWorksheet.cell(forCellReference: "B1", shouldCreate: true)!
-//        cell.setStringValue(expense.toDateString())
-//        cell = firstWorksheet.cell(forCellReference: "C1", shouldCreate: true)!
-//        cell.setStringValue(String(expense.toAmountString()))
-//        let image = UIImage(data: expense.recieptImage)
-//        //preserveTransparency force JPEG (NO) or PNG (YES)
-//        let drawing = firstWorksheet.add(image, inCellReferenced: "D20", withOffset: CGPoint.zero, size: CGSize.init(width: 200, height: 200), preserveTransparency: false)
-//        //let drawing: BRAWorksheetDrawing = firstWorksheet.add(image, betweenCellsReferenced: "D1", and: "E10", with: UIEdgeInsets.zero, preserveTransparency: false)
-//        //Set drawing insets (percentage)
-//        drawing!.insets = UIEdgeInsetsMake(0.0, 0.0, 0.5, 0.5)
-//        let sheetImage = firstWorksheet.image(forCellReference: "D1")
-//        let sheetImageData = UIImageJPEGRepresentation(sheetImage!.uiImage!, 0.8)
-//        guard let path = FileManager.default
-//            .urls(for: .documentDirectory, in: .userDomainMask).first else {
-//                return nil
-//        }
-//        let saveFileURL = path.appendingPathComponent(expensesModel.expenses[0].toMonthString() + "-Expenses.xlsx")
-//        spreadsheet.save(as: saveFileURL.path)
-//
-//        return saveFileURL
         guard let path = FileManager.default
             .urls(for: .documentDirectory, in: .userDomainMask).first else {
                 return nil

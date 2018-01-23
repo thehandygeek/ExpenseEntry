@@ -27,6 +27,13 @@ class ExpenseEntryViewController: UIViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view, typically from a nib.
         
         self.typeText.text = UserDefaults.standard.object(forKey: ExpenseEntryViewController.kExpenseTypeKey) as! String?
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(applicationDidBecomeActive(_:)),
+            name: NSNotification.Name.UIApplicationDidBecomeActive,
+            object: nil)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,7 +58,13 @@ class ExpenseEntryViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
-
+    
+    
+    @objc
+    func applicationDidBecomeActive(_ notification: NSNotification) {
+        selectedDate.date = Date(timeIntervalSinceNow: 0)
+    }
+    
     @IBAction func submitButtonClicked(sender: UIButton) {
         guard let amountTextValue = amountText.text,
             let amount = Decimal(string: amountTextValue),
@@ -66,7 +79,11 @@ class ExpenseEntryViewController: UIViewController, UITextFieldDelegate {
         UserDefaults.standard.setValue(self.typeText.text, forKey: ExpenseEntryViewController.kExpenseTypeKey)
         
         let alertViewController = UIAlertController(title: "Expense Added", message: "You successfully added your expense", preferredStyle: UIAlertControllerStyle.alert)
-        let alertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+        let alertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {(alert: UIAlertAction!) in
+            self.amountText.text = ""
+            self.recieptImageView.image = nil
+            self.recieptImage = nil
+        }
         alertViewController.addAction(alertAction)
         self.present(alertViewController, animated: true, completion: nil)
     }

@@ -45,7 +45,7 @@ class ExpensesModel {
             var csvText = ""
             for expense in expenses {
                 let imageSha = expense.recieptImage.sha1
-                let shortIndex = imageSha.index(imageSha.startIndex, offsetBy: 7)
+                let shortIndex = imageSha.index(imageSha.startIndex, offsetBy: 8)
                 let imageName = String(imageSha[..<shortIndex] + ".jpg")
                 let imagePath = imageDirectory.appendingPathComponent(imageName)
                 try expense.recieptImage.write(to: imagePath, options: .atomic)
