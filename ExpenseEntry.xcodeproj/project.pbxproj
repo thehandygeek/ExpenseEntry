@@ -14,8 +14,11 @@
 		D2BC7DDA1E09B25F0040C489 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2BC7DD91E09B25F0040C489 /* Assets.xcassets */; };
 		D2BC7DDD1E09B25F0040C489 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2BC7DDB1E09B25F0040C489 /* LaunchScreen.storyboard */; };
 		FA8F556320162DFF005C1127 /* Data+SHA.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8F556220162DFF005C1127 /* Data+SHA.swift */; };
+		FAA4DBD62028B1860022CEE4 /* UIViewController+Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA4DBD52028B1860022CEE4 /* UIViewController+Spinner.swift */; };
 		FAB5B6D71E0ABE20005CC6F7 /* ExpenseReportTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB5B6D61E0ABE20005CC6F7 /* ExpenseReportTableViewController.swift */; };
 		FAB5B6D91E0ABF12005CC6F7 /* ExpenseEntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB5B6D81E0ABF12005CC6F7 /* ExpenseEntryTableViewCell.swift */; };
+		FABDDA88202496EA00B66872 /* NewtorkSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABDDA87202496EA00B66872 /* NewtorkSupport.swift */; };
+		FAEC39392020C00600CE5263 /* UIImage+Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEC39382020C00600CE5263 /* UIImage+Scale.swift */; };
 		FAFA23AB200FBE39006A4BBA /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFA23AA200FBE39006A4BBA /* CameraViewController.swift */; };
 		FAFA23AE200FC420006A4BBA /* ExpenseEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFA23AD200FC420006A4BBA /* ExpenseEntry.swift */; };
 		FAFA23B0200FC498006A4BBA /* ExpensesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFA23AF200FC498006A4BBA /* ExpensesModel.swift */; };
@@ -35,8 +38,11 @@
 		FA8F555B201287E8005C1127 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		FA8F555E20162B61005C1127 /* ExpenseEntryBridging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExpenseEntryBridging.h; sourceTree = "<group>"; };
 		FA8F556220162DFF005C1127 /* Data+SHA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+SHA.swift"; sourceTree = "<group>"; };
+		FAA4DBD52028B1860022CEE4 /* UIViewController+Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Spinner.swift"; sourceTree = "<group>"; };
 		FAB5B6D61E0ABE20005CC6F7 /* ExpenseReportTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseReportTableViewController.swift; sourceTree = "<group>"; };
 		FAB5B6D81E0ABF12005CC6F7 /* ExpenseEntryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseEntryTableViewCell.swift; sourceTree = "<group>"; };
+		FABDDA87202496EA00B66872 /* NewtorkSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewtorkSupport.swift; sourceTree = "<group>"; };
+		FAEC39382020C00600CE5263 /* UIImage+Scale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Scale.swift"; sourceTree = "<group>"; };
 		FAFA23AA200FBE39006A4BBA /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		FAFA23AD200FC420006A4BBA /* ExpenseEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseEntry.swift; sourceTree = "<group>"; };
 		FAFA23AF200FC498006A4BBA /* ExpensesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesModel.swift; sourceTree = "<group>"; };
@@ -113,6 +119,9 @@
 			isa = PBXGroup;
 			children = (
 				FA8F556220162DFF005C1127 /* Data+SHA.swift */,
+				FAEC39382020C00600CE5263 /* UIImage+Scale.swift */,
+				FABDDA87202496EA00B66872 /* NewtorkSupport.swift */,
+				FAA4DBD52028B1860022CEE4 /* UIViewController+Spinner.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -261,10 +270,13 @@
 				FAB5B6D71E0ABE20005CC6F7 /* ExpenseReportTableViewController.swift in Sources */,
 				FA8F556320162DFF005C1127 /* Data+SHA.swift in Sources */,
 				FAB5B6D91E0ABF12005CC6F7 /* ExpenseEntryTableViewCell.swift in Sources */,
+				FAEC39392020C00600CE5263 /* UIImage+Scale.swift in Sources */,
 				FAFA23B0200FC498006A4BBA /* ExpensesModel.swift in Sources */,
 				D2BC7DD31E09B25F0040C489 /* ExpenseEntryViewController.swift in Sources */,
 				FAFA23AB200FBE39006A4BBA /* CameraViewController.swift in Sources */,
+				FABDDA88202496EA00B66872 /* NewtorkSupport.swift in Sources */,
 				FAFA23AE200FC420006A4BBA /* ExpenseEntry.swift in Sources */,
+				FAA4DBD62028B1860022CEE4 /* UIViewController+Spinner.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

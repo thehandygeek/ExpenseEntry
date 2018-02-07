@@ -197,12 +197,6 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Syp-8E-bX9">
-                                            <rect key="frame" x="177.33333333333334" y="10.999999999999996" width="60" height="58.666666666666657"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="60" id="Vo8-GD-CSk"/>
-                                            </constraints>
-                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6bR-jy-28e">
                                             <rect key="frame" x="20" y="11" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -211,21 +205,17 @@
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="Syp-8E-bX9" firstAttribute="top" secondItem="m0s-xO-k7d" secondAttribute="topMargin" id="AWT-hp-Ucl"/>
                                         <constraint firstItem="JsB-U6-ja7" firstAttribute="centerY" secondItem="m0s-xO-k7d" secondAttribute="centerY" id="Bbd-Yp-9Xv"/>
                                         <constraint firstItem="6bR-jy-28e" firstAttribute="top" secondItem="m0s-xO-k7d" secondAttribute="topMargin" id="Qu7-ER-44i"/>
                                         <constraint firstItem="6bR-jy-28e" firstAttribute="leading" secondItem="m0s-xO-k7d" secondAttribute="leadingMargin" id="Qzm-XZ-4EL"/>
                                         <constraint firstItem="cBZ-6W-7kE" firstAttribute="leading" secondItem="m0s-xO-k7d" secondAttribute="leadingMargin" id="aB0-ew-6AI"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="Syp-8E-bX9" secondAttribute="bottom" id="gwa-IU-dbG"/>
                                         <constraint firstItem="cBZ-6W-7kE" firstAttribute="bottom" secondItem="m0s-xO-k7d" secondAttribute="bottomMargin" id="r0Q-g0-grd"/>
-                                        <constraint firstItem="Syp-8E-bX9" firstAttribute="centerX" secondItem="m0s-xO-k7d" secondAttribute="centerX" id="xIF-IE-gCB"/>
                                         <constraint firstItem="JsB-U6-ja7" firstAttribute="trailing" secondItem="m0s-xO-k7d" secondAttribute="trailingMargin" id="yzS-22-mdr"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="amountLabel" destination="JsB-U6-ja7" id="Iqe-F8-CY4"/>
                                     <outlet property="dateLabel" destination="6bR-jy-28e" id="agC-s9-0gY"/>
-                                    <outlet property="recieptImage" destination="Syp-8E-bX9" id="bmf-UQ-av5"/>
                                     <outlet property="typeLabel" destination="cBZ-6W-7kE" id="zqT-cN-Xil"/>
                                 </connections>
                             </tableViewCell>

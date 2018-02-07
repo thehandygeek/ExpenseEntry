@@ -41,50 +41,57 @@ class ExpenseReportTableViewController: UITableViewController {
         self.navigationController?.setToolbarHidden(true, animated: true)
     }
     
+    deinit {
+        if let model = expensesModel {
+            model.secondaryEventTarget = nil
+        }
+    }
+    
     func set(expensesModel: ExpensesModel) {
         self.expensesModel = expensesModel
+        expensesModel.secondaryEventTarget = self
     }
     
     @IBAction func shareButtonAction(sender: UIBarButtonItem) {
-        guard let url = self.exportToFileURL() else {
-                return
-        }
-        
-        let activityViewController = UIActivityViewController(
-            activityItems: ["Expenses.", url],
-            applicationActivities: nil)
-        activityViewController.completionWithItemsHandler = {
-            (activity, success, items, error) in
-            try? FileManager.default.removeItem(at: url)
-        }
-        if let popoverPresentationController = activityViewController.popoverPresentationController {
-            popoverPresentationController.barButtonItem = (sender)
-        }
-        present(activityViewController, animated: true, completion: nil)
+//        guard let url = self.exportToFileURL() else {
+//                return
+//        }
+//        
+//        let activityViewController = UIActivityViewController(
+//            activityItems: ["Expenses.", url],
+//            applicationActivities: nil)
+//        activityViewController.completionWithItemsHandler = {
+//            (activity, success, items, error) in
+//            try? FileManager.default.removeItem(at: url)
+//        }
+//        if let popoverPresentationController = activityViewController.popoverPresentationController {
+//            popoverPresentationController.barButtonItem = (sender)
+//        }
+//        present(activityViewController, animated: true, completion: nil)
     }
     
-    @IBAction func trashButtonAction(sender: UIBarButtonItem) {
-        let alertViewController = UIAlertController(title: "Delete Expenses", message: "Are you sure you want to delete all expenses?", preferredStyle: UIAlertControllerStyle.alert)
-        let okAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:
-            {(alert: UIAlertAction!) in
-                self.expensesModel!.expenses.removeAll()
-                try? self.expensesModel!.save()
-                self.tableView.reloadData()
-        })
-        let cancelAlertAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil)
-        alertViewController.addAction(okAlertAction)
-        alertViewController.addAction(cancelAlertAction)
-        self.present(alertViewController, animated: true, completion: nil)
-    }
+//    @IBAction func trashButtonAction(sender: UIBarButtonItem) {
+//        let alertViewController = UIAlertController(title: "Delete Expenses", message: "Are you sure you want to delete all expenses?", preferredStyle: UIAlertControllerStyle.alert)
+//        let okAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:
+//            {(alert: UIAlertAction!) in
+//                self.expensesModel!.expenses.removeAll()
+//                try? self.expensesModel!.save()
+//                self.tableView.reloadData()
+//        })
+//        let cancelAlertAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil)
+//        alertViewController.addAction(okAlertAction)
+//        alertViewController.addAction(cancelAlertAction)
+//        self.present(alertViewController, animated: true, completion: nil)
+//    }
     
-    func exportToFileURL() -> URL? {
-        guard let path = FileManager.default
-            .urls(for: .documentDirectory, in: .userDomainMask).first else {
-                return nil
-        }
-
-        return expensesModel!.generateZip(path: path)
-    }
+//    func exportToFileURL() -> URL? {
+//        guard let path = FileManager.default
+//            .urls(for: .documentDirectory, in: .userDomainMask).first else {
+//                return nil
+//        }
+//
+//        return expensesModel!.generateZip(path: path)
+//    }
 
     // MARK: - Table view data source
 
@@ -102,10 +109,9 @@ class ExpenseReportTableViewController: UITableViewController {
 
         // Configure the cell...
         let expenseEntry = expensesModel!.expenses[indexPath.row]
-        cell.dateLabel.text = expenseEntry.toDateString()
+        cell.dateLabel.text = expenseEntry.date
         cell.typeLabel.text = expenseEntry.type
-        cell.amountLabel.text = expenseEntry.toAmountString()
-        cell.recieptImage.image = UIImage(data: expenseEntry.recieptImage)
+        cell.amountLabel.text = expenseEntry.amount
         
 
         return cell
@@ -125,9 +131,11 @@ class ExpenseReportTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            expensesModel!.expenses.remove(at: indexPath.row)
-            try? expensesModel!.save()
-            self.tableView.reloadData()
+            let expenseToDelete = expensesModel!.expenses[indexPath.row]
+            let spinner = displaySpinner()
+            expensesModel!.deleteExpense(referenceId: expenseToDelete.referenceId) { success in
+                self.removeSpinner(spinner: spinner)
+            }
         }
     }
     
@@ -157,4 +165,12 @@ class ExpenseReportTableViewController: UITableViewController {
     }
     */
 
+}
+
+extension ExpenseReportTableViewController: ExpensesModelEvents {
+    func expensesChanged(expenses: [ExpenseEntry]) {
+        tableView.reloadData()
+    }
+    
+    
 }

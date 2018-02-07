@@ -1,47 +1,18 @@
 import Foundation
 
 struct ExpenseEntry: Codable {
-    let amount: Decimal
-    let date: Date
+    let amount: String
+    let date: String
     let type: String
-    let recieptImage: Data
+    let referenceId: String
+    
+    enum CodingKeys: String, CodingKey { // declaring our keys
+        case amount = "amount"
+        case date = "date"
+        case type = "type"
+        case referenceId = "reference_id"
+    }
 }
 
 extension ExpenseEntry {
-    func toDateString() -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        return formatter.string(from: self.date)
-    }
-    
-    func toMonthString() -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMM-yyyy"
-        return formatter.string(from: self.date)
-    }
-    
-    func toAmountString() -> String {
-        let currencyFormatter = NumberFormatter()
-        currencyFormatter.usesGroupingSeparator = true
-        
-        currencyFormatter.numberStyle = .currency
-        // localize to your grouping and decimal separator
-        currencyFormatter.locale = NSLocale.current
-        guard let amountString = currencyFormatter.string(from: amount as NSDecimalNumber) else {
-            return ""
-        }
-        return amountString
-    }
-    
-    var amountExportString: String {
-        let exportFormatter = NumberFormatter()
-        exportFormatter.minimumFractionDigits = 2
-        exportFormatter.maximumFractionDigits = 2
-        exportFormatter.numberStyle = .decimal
-
-        guard let amountString = exportFormatter.string(from: amount as NSDecimalNumber) else {
-            return ""
-        }
-        return amountString
-    }
 }

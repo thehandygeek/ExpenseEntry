@@ -72,7 +72,7 @@ class CameraViewController: UIViewController {
         let photoSettings = AVCapturePhotoSettings()
         // Set photo settings for our need
         photoSettings.isAutoStillImageStabilizationEnabled = true
-        photoSettings.isHighResolutionPhotoEnabled = false
+        photoSettings.isHighResolutionPhotoEnabled = true
         photoSettings.flashMode = .auto
         // Call capturePhoto method by passing our photo settings and a
         // delegate implementing AVCapturePhotoCaptureDelegate
@@ -101,8 +101,10 @@ extension CameraViewController : AVCapturePhotoCaptureDelegate {
         }
         
         // Initialise an UIImage with our image data
-        let capturedImage = UIImage.init(data: imageData , scale: 1.0)
-        delegate!.dismiss(viewController: self, image: capturedImage!)
+        guard let capturedImage = UIImage.init(data: imageData , scale: 1.0) else {
+            return
+        }
+        delegate?.dismiss(viewController: self, image: capturedImage.scale(to: CGSize(width: 768, height: 1024)))
 //        if let image = capturedImage {
 //            // Save our captured image to photos album
 //            UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)

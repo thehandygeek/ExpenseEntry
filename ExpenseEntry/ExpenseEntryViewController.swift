@@ -19,12 +19,13 @@ class ExpenseEntryViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var recieptImageView: UIImageView!
     
-    private var expensesModel = ExpensesModel()
+    private var expensesModel: ExpensesModel? = nil
     private var recieptImage: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        expensesModel = ExpensesModel(eventTarget: self)
         
         self.typeText.text = UserDefaults.standard.object(forKey: ExpenseEntryViewController.kExpenseTypeKey) as! String?
         
@@ -33,7 +34,6 @@ class ExpenseEntryViewController: UIViewController, UITextFieldDelegate {
             selector: #selector(applicationDidBecomeActive(_:)),
             name: NSNotification.Name.UIApplicationDidBecomeActive,
             object: nil)
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,7 +54,7 @@ class ExpenseEntryViewController: UIViewController, UITextFieldDelegate {
         }
         else if segue.identifier == "ShowReport" {
             if let reportController = segue.destination as? ExpenseReportTableViewController {
-                reportController.set(expensesModel: expensesModel)
+                reportController.set(expensesModel: expensesModel!)
             }
         }
     }
@@ -67,25 +67,24 @@ class ExpenseEntryViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func submitButtonClicked(sender: UIButton) {
         guard let amountTextValue = amountText.text,
-            let amount = Decimal(string: amountTextValue),
+            let typeTextValue = typeText.text,
             let image = recieptImage,
-            let imageData = UIImageJPEGRepresentation(image, 0.8) else {
+            let imageData = UIImageJPEGRepresentation(image, 0.6) else {
             return
         }
-        let newEntry = ExpenseEntry(amount: amount, date: selectedDate.date, type: typeText.text!, recieptImage:imageData)
-        expensesModel.expenses.append(newEntry)
-        try? expensesModel.save()
-        self.updateCountLabel()
-        UserDefaults.standard.setValue(self.typeText.text, forKey: ExpenseEntryViewController.kExpenseTypeKey)
-        
-        let alertViewController = UIAlertController(title: "Expense Added", message: "You successfully added your expense", preferredStyle: UIAlertControllerStyle.alert)
-        let alertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {(alert: UIAlertAction!) in
-            self.amountText.text = ""
-            self.recieptImageView.image = nil
-            self.recieptImage = nil
+
+        let dateValue = selectedDate.date
+        let successTitle = "Expense Added"
+        let successMessage = "You successfully added your expense"
+        let failureTitle = "Expense Not Added"
+        let failureMessage = "Request to add expense failed"
+        let spinner = displaySpinner()
+        expensesModel!.addExpense(type: typeTextValue, date: dateValue, amount: amountTextValue, reciept: imageData) { expenseResult in
+            self.removeSpinner(spinner: spinner)
+            let title = expenseResult ? successTitle : failureTitle
+            let message = expenseResult ? successMessage : failureMessage
+            self.showAlert(title: title, message: message)
         }
-        alertViewController.addAction(alertAction)
-        self.present(alertViewController, animated: true, completion: nil)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -98,10 +97,19 @@ class ExpenseEntryViewController: UIViewController, UITextFieldDelegate {
     }
     
     func updateCountLabel() {
-        countLabel.text = String(format: "Record count: %d", expensesModel.expenses.count)
+        countLabel.text = String(format: "Record count: %d", expensesModel!.expenses.count)
     }
     
-    
+    private func showAlert(title: String, message: String) {
+        let alertViewController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let alertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {(alert: UIAlertAction!) in
+            self.amountText.text = ""
+            self.recieptImageView.image = nil
+            self.recieptImage = nil
+        }
+        alertViewController.addAction(alertAction)
+        self.present(alertViewController, animated: true, completion: nil)
+    }
 }
 
 extension ExpenseEntryViewController: CameraViewContollerDelegate {
@@ -112,5 +120,11 @@ extension ExpenseEntryViewController: CameraViewContollerDelegate {
     }
     
     
+}
+
+extension ExpenseEntryViewController: ExpensesModelEvents {
+    func expensesChanged(expenses: [ExpenseEntry]) {
+        updateCountLabel()
+    }
 }
 
