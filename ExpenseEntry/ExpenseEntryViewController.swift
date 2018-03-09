@@ -79,11 +79,16 @@ class ExpenseEntryViewController: UIViewController, UITextFieldDelegate {
         let failureTitle = "Expense Not Added"
         let failureMessage = "Request to add expense failed"
         let spinner = displaySpinner()
-        expensesModel!.addExpense(type: typeTextValue, date: dateValue, amount: amountTextValue, reciept: imageData) { expenseResult in
+        expensesModel!.addExpense(type: typeTextValue, date: dateValue, amount: amountTextValue, reciept: imageData) { success in
             self.removeSpinner(spinner: spinner)
-            let title = expenseResult ? successTitle : failureTitle
-            let message = expenseResult ? successMessage : failureMessage
+            let title = success ? successTitle : failureTitle
+            let message = success ? successMessage : failureMessage
             self.showAlert(title: title, message: message)
+            if success {
+                self.amountText.text = ""
+                self.recieptImageView.image = nil
+                self.recieptImage = nil
+            }
         }
     }
     
@@ -102,11 +107,7 @@ class ExpenseEntryViewController: UIViewController, UITextFieldDelegate {
     
     private func showAlert(title: String, message: String) {
         let alertViewController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        let alertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {(alert: UIAlertAction!) in
-            self.amountText.text = ""
-            self.recieptImageView.image = nil
-            self.recieptImage = nil
-        }
+        let alertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default)
         alertViewController.addAction(alertAction)
         self.present(alertViewController, animated: true, completion: nil)
     }
