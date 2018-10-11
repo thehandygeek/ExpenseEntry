@@ -8,26 +8,27 @@
 
 import UIKit
 import CoreData
+import MobileCoreServices
 
 class ExpenseEntryViewController: UIViewController, UITextFieldDelegate {
     
-    static let kExpenseTypeKey = "type"
-    
     @IBOutlet weak var selectedDate: UIDatePicker!
-    @IBOutlet weak var typeText: UITextField!
+    @IBOutlet weak var typePicker: UIPickerView!
     @IBOutlet weak var amountText: UITextField!
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var recieptImageView: UIImageView!
     
     private var expensesModel: ExpensesModel? = nil
     private var recieptImage: UIImage?
+    private var expenseTypes = ["Meal", "Travel", "Supplies", "Auto"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         expensesModel = ExpensesModel(eventTarget: self)
         
-        self.typeText.text = UserDefaults.standard.object(forKey: ExpenseEntryViewController.kExpenseTypeKey) as! String?
+        typePicker.dataSource = self
+        typePicker.delegate = self
         
         NotificationCenter.default.addObserver(
             self,
@@ -67,19 +68,19 @@ class ExpenseEntryViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func submitButtonClicked(sender: UIButton) {
         guard let amountTextValue = amountText.text,
-            let typeTextValue = typeText.text,
             let image = recieptImage,
             let imageData = UIImageJPEGRepresentation(image, 0.6) else {
             return
         }
 
+        let selectedType = expenseTypes[typePicker.selectedRow(inComponent: 0)]
         let dateValue = selectedDate.date
         let successTitle = "Expense Added"
         let successMessage = "You successfully added your expense"
         let failureTitle = "Expense Not Added"
         let failureMessage = "Request to add expense failed"
         let spinner = displaySpinner()
-        expensesModel!.addExpense(type: typeTextValue, date: dateValue, amount: amountTextValue, reciept: imageData) { success in
+        expensesModel!.addExpense(type: selectedType, date: dateValue, amount: amountTextValue, companyId: ExpensesModel.companyId.rawValue, reciept: imageData) { success in
             self.removeSpinner(spinner: spinner)
             let title = success ? successTitle : failureTitle
             let message = success ? successMessage : failureMessage
@@ -92,10 +93,15 @@ class ExpenseEntryViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    @IBAction func selectJPEG(sender: UIButton) {
+        let importMenu = UIDocumentMenuViewController(documentTypes: [String(kUTTypeJPEG)], in: .import)
+        importMenu.delegate = self
+        importMenu.modalPresentationStyle = .formSheet
+        self.present(importMenu, animated: true, completion: nil)
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if (textField == typeText) {
-            amountText.becomeFirstResponder()
-        } else if (textField == amountText) {
+        if (textField == amountText) {
             amountText.resignFirstResponder()
         }
         return true;
@@ -119,13 +125,50 @@ extension ExpenseEntryViewController: CameraViewContollerDelegate {
         recieptImage = image
         self.dismiss(animated: true, completion: nil)
     }
-    
-    
 }
 
 extension ExpenseEntryViewController: ExpensesModelEvents {
     func expensesChanged(expenses: [ExpenseEntry]) {
         updateCountLabel()
     }
+}
+
+extension ExpenseEntryViewController: UIPickerViewDataSource, UIPickerViewDelegate{
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return expenseTypes.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return expenseTypes[row]
+    }
+}
+
+extension ExpenseEntryViewController: UIDocumentMenuDelegate,UIDocumentPickerDelegate {
+
+    public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
+        let myURL = url as URL
+        let fileManager = FileManager.default
+        guard let imageData = fileManager.contents(atPath: myURL.path),
+            let image = UIImage.init(data: imageData , scale: 1.0) else { return }
+        recieptImageView.image = image
+        recieptImage = image
+    }
+    
+    
+    public func documentMenu(_ documentMenu:UIDocumentMenuViewController, didPickDocumentPicker documentPicker: UIDocumentPickerViewController) {
+        documentPicker.delegate = self
+        present(documentPicker, animated: true, completion: nil)
+    }
+    
+    
+    func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
+        print("view was cancelled")
+        dismiss(animated: true, completion: nil)
+    }
+    
 }
 

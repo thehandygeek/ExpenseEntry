@@ -41,6 +41,12 @@ private struct ExpenseRequestModel: Encodable {
     let type: String
     let date: String
     let amount: String
+    let companyId: String
+    
+    enum CodingKeys: String, CodingKey { // declaring our keys
+        case type, date, amount
+        case companyId = "company_id"
+    }
 }
 
 private struct ExpenseResponseModel: Decodable {
@@ -69,13 +75,13 @@ class NetworkHelper {
     
     private var sessionInfo: SessionInfo? = nil
     
-    func addExpense(type: String, date: Date, amount: String, completion: @escaping (Result<String>) -> Void ) {
+    func addExpense(type: String, date: Date, amount: String, companyId: String, completion: @escaping (Result<String>) -> Void ) {
         signInIfNeeded() { success in
             if success {
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "MM/dd/yyyy"
                 let dateString = dateFormatter.string(from: date)
-                let requestModel = ExpenseRequestModel(type: type, date: dateString, amount: amount)
+                let requestModel = ExpenseRequestModel(type: type, date: dateString, amount: amount, companyId: companyId)
                 let request = self.createRequest(url: self.expenseURL, model: requestModel)
                 
                 self.performNetworkTask(with: request, responseType: ExpenseResponseModel.self) { result in
@@ -116,12 +122,13 @@ class NetworkHelper {
         }
     }
     
-    func getExpenses(completion: @escaping (Result<[ExpenseEntry]>) -> Void) {
+    func getExpenses(companyId: String, completion: @escaping (Result<[ExpenseEntry]>) -> Void) {
         signInIfNeeded() { success in
             if success {
                 var request = URLRequest(url: URL(string: self.expenseURL)!)
                 request.httpMethod = "GET"
                 request.addValue(self.sessionInfo!.sessionId, forHTTPHeaderField: "session_id")
+                request.addValue(companyId, forHTTPHeaderField: "company_filter")
 
                 self.performNetworkTask(with: request, responseType: [ExpenseEntry].self) { result in
                     completion(result)
