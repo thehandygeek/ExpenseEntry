@@ -47,6 +47,13 @@ private struct ExpenseRequestModel: Encodable {
         case type, date, amount
         case companyId = "company_id"
     }
+    
+    init(type: ExpenseType, date: String, amount: String, companyId: CompanyId) {
+        self.type = type.rawValue
+        self.date = date
+        self.amount = amount
+        self.companyId = companyId.rawValue
+    }
 }
 
 private struct ExpenseResponseModel: Decodable {
@@ -75,7 +82,7 @@ class NetworkHelper {
     
     private var sessionInfo: SessionInfo? = nil
     
-    func addExpense(type: String, date: Date, amount: String, companyId: String, completion: @escaping (Result<String>) -> Void ) {
+    func addExpense(type: ExpenseType, date: Date, amount: String, companyId: CompanyId, completion: @escaping (Result<String>) -> Void ) {
         signInIfNeeded() { success in
             if success {
                 let dateFormatter = DateFormatter()

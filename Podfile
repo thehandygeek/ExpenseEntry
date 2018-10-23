@@ -7,4 +7,5 @@ target 'ExpenseEntry' do
 
   # Pods for ExpenseEntry
   pod 'SSZipArchive'
+  pod 'TPKeyboardAvoiding','~> 1.3.1'
 end

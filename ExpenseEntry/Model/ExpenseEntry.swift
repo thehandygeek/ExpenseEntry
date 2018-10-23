@@ -1,6 +1,20 @@
 import Foundation
 
-struct ExpenseEntry: Codable {
+enum CompanyId: String {
+    case touchSciences = "TCH"
+    case hollandSunset = "SUN"
+    case splashTravelling = "SPL"
+    case etp = "ETP"
+}
+
+enum ExpenseType: String {
+    case meal = "Meal"
+    case travel = "Travel"
+    case supplies = "Supplies"
+    case auto = "Auto"
+}
+
+struct ExpenseEntry: Decodable {
     let amount: String
     let date: String
     let type: String
@@ -14,7 +28,16 @@ struct ExpenseEntry: Codable {
         case referenceId = "reference_id"
         case companyId = "company_id"
     }
-}
-
-extension ExpenseEntry {
+    
+    var typeValue: ExpenseType {
+        get {
+            return ExpenseType(rawValue: type) ?? .meal
+        }
+    }
+    
+    var companyIdValue: CompanyId {
+        get {
+            return CompanyId(rawValue: companyId) ?? .touchSciences
+        }
+    }
 }

@@ -9,12 +9,22 @@
 /* Begin PBXBuildFile section */
 		1BE67CEBFE5E278DFD6DBFF4 /* Pods_ExpenseEntry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30992C3738E02D422D551E29 /* Pods_ExpenseEntry.framework */; };
 		D2BC7DD11E09B25F0040C489 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC7DD01E09B25F0040C489 /* AppDelegate.swift */; };
-		D2BC7DD31E09B25F0040C489 /* ExpenseEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC7DD21E09B25F0040C489 /* ExpenseEntryViewController.swift */; };
 		D2BC7DD81E09B25F0040C489 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2BC7DD61E09B25F0040C489 /* Main.storyboard */; };
 		D2BC7DDA1E09B25F0040C489 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2BC7DD91E09B25F0040C489 /* Assets.xcassets */; };
 		D2BC7DDD1E09B25F0040C489 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2BC7DDB1E09B25F0040C489 /* LaunchScreen.storyboard */; };
 		FA8F556320162DFF005C1127 /* Data+SHA.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8F556220162DFF005C1127 /* Data+SHA.swift */; };
 		FAA4DBD62028B1860022CEE4 /* UIViewController+Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA4DBD52028B1860022CEE4 /* UIViewController+Spinner.swift */; };
+		FAB27778217F47330096AD53 /* DateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB27776217F47330096AD53 /* DateTableViewCell.swift */; };
+		FAB27779217F47330096AD53 /* DateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB27777217F47330096AD53 /* DateTableViewCell.xib */; };
+		FAB2777C217F474D0096AD53 /* ExpenseTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB2777A217F474D0096AD53 /* ExpenseTypeTableViewCell.swift */; };
+		FAB2777D217F474D0096AD53 /* ExpenseTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB2777B217F474D0096AD53 /* ExpenseTypeTableViewCell.xib */; };
+		FAB27780217F47680096AD53 /* ExpenseAmountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB2777E217F47680096AD53 /* ExpenseAmountTableViewCell.swift */; };
+		FAB27781217F47680096AD53 /* ExpenseAmountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB2777F217F47680096AD53 /* ExpenseAmountTableViewCell.xib */; };
+		FAB27783217F4B5C0096AD53 /* ExpenseEntryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB27782217F4B5C0096AD53 /* ExpenseEntryTableViewController.swift */; };
+		FAB27786217F4D480096AD53 /* UITableView+Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB27785217F4D480096AD53 /* UITableView+Register.swift */; };
+		FAB27788217F52450096AD53 /* ConfigurableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB27787217F52450096AD53 /* ConfigurableCell.swift */; };
+		FAB2778B217F6E2F0096AD53 /* CaptureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB27789217F6E2F0096AD53 /* CaptureTableViewCell.swift */; };
+		FAB2778C217F6E2F0096AD53 /* CaptureTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB2778A217F6E2F0096AD53 /* CaptureTableViewCell.xib */; };
 		FAB5B6D71E0ABE20005CC6F7 /* ExpenseReportTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB5B6D61E0ABE20005CC6F7 /* ExpenseReportTableViewController.swift */; };
 		FAB5B6D91E0ABF12005CC6F7 /* ExpenseEntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB5B6D81E0ABF12005CC6F7 /* ExpenseEntryTableViewCell.swift */; };
 		FABDDA88202496EA00B66872 /* NewtorkSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABDDA87202496EA00B66872 /* NewtorkSupport.swift */; };
@@ -30,7 +40,6 @@
 		D062C2E541616654AB7E0F8F /* Pods-ExpenseEntry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpenseEntry.release.xcconfig"; path = "Pods/Target Support Files/Pods-ExpenseEntry/Pods-ExpenseEntry.release.xcconfig"; sourceTree = "<group>"; };
 		D2BC7DCD1E09B25F0040C489 /* ExpenseEntry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseEntry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2BC7DD01E09B25F0040C489 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D2BC7DD21E09B25F0040C489 /* ExpenseEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseEntryViewController.swift; sourceTree = "<group>"; };
 		D2BC7DD71E09B25F0040C489 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D2BC7DD91E09B25F0040C489 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D2BC7DDC1E09B25F0040C489 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -40,6 +49,17 @@
 		FA8F555E20162B61005C1127 /* ExpenseEntryBridging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExpenseEntryBridging.h; sourceTree = "<group>"; };
 		FA8F556220162DFF005C1127 /* Data+SHA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+SHA.swift"; sourceTree = "<group>"; };
 		FAA4DBD52028B1860022CEE4 /* UIViewController+Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Spinner.swift"; sourceTree = "<group>"; };
+		FAB27776217F47330096AD53 /* DateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTableViewCell.swift; sourceTree = "<group>"; };
+		FAB27777217F47330096AD53 /* DateTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DateTableViewCell.xib; sourceTree = "<group>"; };
+		FAB2777A217F474D0096AD53 /* ExpenseTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTypeTableViewCell.swift; sourceTree = "<group>"; };
+		FAB2777B217F474D0096AD53 /* ExpenseTypeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpenseTypeTableViewCell.xib; sourceTree = "<group>"; };
+		FAB2777E217F47680096AD53 /* ExpenseAmountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseAmountTableViewCell.swift; sourceTree = "<group>"; };
+		FAB2777F217F47680096AD53 /* ExpenseAmountTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpenseAmountTableViewCell.xib; sourceTree = "<group>"; };
+		FAB27782217F4B5C0096AD53 /* ExpenseEntryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseEntryTableViewController.swift; sourceTree = "<group>"; };
+		FAB27785217F4D480096AD53 /* UITableView+Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Register.swift"; sourceTree = "<group>"; };
+		FAB27787217F52450096AD53 /* ConfigurableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableCell.swift; sourceTree = "<group>"; };
+		FAB27789217F6E2F0096AD53 /* CaptureTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureTableViewCell.swift; sourceTree = "<group>"; };
+		FAB2778A217F6E2F0096AD53 /* CaptureTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CaptureTableViewCell.xib; sourceTree = "<group>"; };
 		FAB5B6D61E0ABE20005CC6F7 /* ExpenseReportTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseReportTableViewController.swift; sourceTree = "<group>"; };
 		FAB5B6D81E0ABF12005CC6F7 /* ExpenseEntryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseEntryTableViewCell.swift; sourceTree = "<group>"; };
 		FABDDA87202496EA00B66872 /* NewtorkSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewtorkSupport.swift; sourceTree = "<group>"; };
@@ -100,11 +120,13 @@
 		D2BC7DCF1E09B25F0040C489 /* ExpenseEntry */ = {
 			isa = PBXGroup;
 			children = (
+				FAB27784217F4D280096AD53 /* Extensions */,
 				FA7559CD216EC41900E42219 /* ExpenseEntry.entitlements */,
+				FAB27775217F47150096AD53 /* Cells */,
 				FAFA23AC200FC407006A4BBA /* Model */,
 				FA8F556120162DDF005C1127 /* Utilities */,
 				D2BC7DD01E09B25F0040C489 /* AppDelegate.swift */,
-				D2BC7DD21E09B25F0040C489 /* ExpenseEntryViewController.swift */,
+				FAB27782217F4B5C0096AD53 /* ExpenseEntryTableViewController.swift */,
 				FAB5B6D61E0ABE20005CC6F7 /* ExpenseReportTableViewController.swift */,
 				FAB5B6D81E0ABF12005CC6F7 /* ExpenseEntryTableViewCell.swift */,
 				FAFA23AA200FBE39006A4BBA /* CameraViewController.swift */,
@@ -128,6 +150,30 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		FAB27775217F47150096AD53 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				FAB27787217F52450096AD53 /* ConfigurableCell.swift */,
+				FAB27776217F47330096AD53 /* DateTableViewCell.swift */,
+				FAB27777217F47330096AD53 /* DateTableViewCell.xib */,
+				FAB2777A217F474D0096AD53 /* ExpenseTypeTableViewCell.swift */,
+				FAB2777B217F474D0096AD53 /* ExpenseTypeTableViewCell.xib */,
+				FAB2777E217F47680096AD53 /* ExpenseAmountTableViewCell.swift */,
+				FAB2777F217F47680096AD53 /* ExpenseAmountTableViewCell.xib */,
+				FAB27789217F6E2F0096AD53 /* CaptureTableViewCell.swift */,
+				FAB2778A217F6E2F0096AD53 /* CaptureTableViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		FAB27784217F4D280096AD53 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				FAB27785217F4D480096AD53 /* UITableView+Register.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		FAFA23AC200FC407006A4BBA /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -149,7 +195,6 @@
 				D2BC7DCA1E09B25F0040C489 /* Frameworks */,
 				D2BC7DCB1E09B25F0040C489 /* Resources */,
 				C9366A75ADC50CFC3D5F1B05 /* [CP] Embed Pods Frameworks */,
-				48CBF8533326E7FFBC3A85C2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -167,7 +212,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0910;
+				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "Touch Sciences";
 				TargetAttributes = {
 					D2BC7DCC1E09B25F0040C489 = {
@@ -176,6 +221,9 @@
 						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
 							com.apple.iCloud = {
 								enabled = 1;
 							};
@@ -207,29 +255,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2BC7DDD1E09B25F0040C489 /* LaunchScreen.storyboard in Resources */,
+				FAB2777D217F474D0096AD53 /* ExpenseTypeTableViewCell.xib in Resources */,
+				FAB27781217F47680096AD53 /* ExpenseAmountTableViewCell.xib in Resources */,
 				D2BC7DDA1E09B25F0040C489 /* Assets.xcassets in Resources */,
 				D2BC7DD81E09B25F0040C489 /* Main.storyboard in Resources */,
+				FAB2778C217F6E2F0096AD53 /* CaptureTableViewCell.xib in Resources */,
+				FAB27779217F47330096AD53 /* DateTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		48CBF8533326E7FFBC3A85C2 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ExpenseEntry/Pods-ExpenseEntry-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		C774D6C670E27D9E6DC53D29 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -256,10 +293,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ExpenseEntry/Pods-ExpenseEntry-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/SSZipArchive/SSZipArchive.framework",
+				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SSZipArchive.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -273,13 +312,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAB27780217F47680096AD53 /* ExpenseAmountTableViewCell.swift in Sources */,
 				D2BC7DD11E09B25F0040C489 /* AppDelegate.swift in Sources */,
 				FAB5B6D71E0ABE20005CC6F7 /* ExpenseReportTableViewController.swift in Sources */,
 				FA8F556320162DFF005C1127 /* Data+SHA.swift in Sources */,
+				FAB2777C217F474D0096AD53 /* ExpenseTypeTableViewCell.swift in Sources */,
+				FAB27778217F47330096AD53 /* DateTableViewCell.swift in Sources */,
+				FAB2778B217F6E2F0096AD53 /* CaptureTableViewCell.swift in Sources */,
+				FAB27786217F4D480096AD53 /* UITableView+Register.swift in Sources */,
+				FAB27788217F52450096AD53 /* ConfigurableCell.swift in Sources */,
 				FAB5B6D91E0ABF12005CC6F7 /* ExpenseEntryTableViewCell.swift in Sources */,
 				FAEC39392020C00600CE5263 /* UIImage+Scale.swift in Sources */,
 				FAFA23B0200FC498006A4BBA /* ExpensesModel.swift in Sources */,
-				D2BC7DD31E09B25F0040C489 /* ExpenseEntryViewController.swift in Sources */,
+				FAB27783217F4B5C0096AD53 /* ExpenseEntryTableViewController.swift in Sources */,
 				FAFA23AB200FBE39006A4BBA /* CameraViewController.swift in Sources */,
 				FABDDA88202496EA00B66872 /* NewtorkSupport.swift in Sources */,
 				FAFA23AE200FC420006A4BBA /* ExpenseEntry.swift in Sources */,
@@ -322,6 +367,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -329,6 +375,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -378,6 +425,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -385,6 +433,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

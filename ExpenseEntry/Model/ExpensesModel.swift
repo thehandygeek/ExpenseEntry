@@ -5,20 +5,27 @@ protocol ExpensesModelEvents: class {
     func expensesChanged(expenses: [ExpenseEntry])
 }
 
-enum CompanyId: String {
-    case touchSciences = "TCH"
-    case hollandSunset = "SUN"
-    case splashTravelling = "SPL"
-}
-
 class ExpensesModel {
     public var expenses: [ExpenseEntry]
     public weak var secondaryEventTarget: ExpensesModelEvents?
-    public static let companyId: CompanyId = .touchSciences
+    public static let companyId: CompanyId = .hollandSunset
     
     private let networkHelper = NetworkHelper()
     private let eventTarget: ExpensesModelEvents
     
+    static var companyDisplayValue: String {
+        switch companyId {
+        case .touchSciences:
+            return "Touch"
+        case .etp:
+            return "ETP"
+        case .hollandSunset:
+            return "Holland"
+        case .splashTravelling:
+            return "Splash"
+        }
+    }
+
     init(eventTarget: ExpensesModelEvents) {
         self.expenses = [ExpenseEntry]()
         self.eventTarget = eventTarget
@@ -26,8 +33,8 @@ class ExpensesModel {
         self.fetchExpenses()
     }
     
-    func addExpense(type: String, date: Date, amount: String, companyId: String, reciept: Data, completion: @escaping (Bool) -> Void) {
-        networkHelper.addExpense(type: type, date: date, amount: amount, companyId: companyId) { expenseResult in
+    func addExpense(type: ExpenseType, date: Date, amount: String, reciept: Data, completion: @escaping (Bool) -> Void) {
+        networkHelper.addExpense(type: type, date: date, amount: amount, companyId: ExpensesModel.companyId) { expenseResult in
             switch expenseResult {
             case let .success(result):
                 self.networkHelper.addReciept(expenseId: result!, imageData: reciept) { recieptResult in
