@@ -181,7 +181,7 @@ extension ExpenseEntryTableViewController: CaptureTableViewCellDelegate {
 extension ExpenseEntryTableViewController: CameraViewContollerDelegate {
     func dismiss(viewController: CameraViewController, image: UIImage) {
         recieptImage = image
-        self.dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
         
         tableView.reloadData()
     }

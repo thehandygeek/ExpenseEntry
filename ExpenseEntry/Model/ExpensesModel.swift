@@ -8,7 +8,7 @@ protocol ExpensesModelEvents: class {
 class ExpensesModel {
     public var expenses: [ExpenseEntry]
     public weak var secondaryEventTarget: ExpensesModelEvents?
-    public static let companyId: CompanyId = .hollandSunset
+    public static let companyId: CompanyId = .touchSciences
     
     private let networkHelper = NetworkHelper()
     private let eventTarget: ExpensesModelEvents
