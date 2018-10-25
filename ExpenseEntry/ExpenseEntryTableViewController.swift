@@ -30,10 +30,18 @@ class ExpenseEntryTableViewController: UIViewController {
         tableView.dataSource = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 50
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(applicationDidBecomeActive(_:)),
+            name: NSNotification.Name.UIApplicationDidBecomeActive,
+            object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        updateCount()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -52,6 +60,7 @@ class ExpenseEntryTableViewController: UIViewController {
     @objc
     func applicationDidBecomeActive(_ notification: NSNotification) {
         selectedDate = Date()
+        tableView.reloadData()
     }
     
     private func updateCount() {
