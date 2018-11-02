@@ -1,6 +1,6 @@
 import Foundation
 
-enum CompanyId: String {
+enum Company: String {
     case touchSciences = "TCH"
     case hollandSunset = "SUN"
     case splashTravelling = "SPL"
@@ -35,9 +35,9 @@ struct ExpenseEntry: Decodable {
         }
     }
     
-    var companyIdValue: CompanyId {
+    var companyIdValue: Company {
         get {
-            return CompanyId(rawValue: companyId) ?? .touchSciences
+            return Company(rawValue: companyId) ?? .touchSciences
         }
     }
 }

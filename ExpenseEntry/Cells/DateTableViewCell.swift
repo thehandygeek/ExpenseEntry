@@ -4,6 +4,10 @@ struct DateCellDetails: CellDetails {
     let date: Date
     let expanded: Bool
     let delegate: DateTableViewCellDelegate
+    
+    var type: CellType {
+        return .date
+    }
 }
 
 protocol DateTableViewCellDelegate: class {

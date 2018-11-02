@@ -3,6 +3,10 @@ import UIKit
 struct CaptureCellDetails: CellDetails {
     let image: UIImage?
     let delegate: CaptureTableViewCellDelegate
+    
+    var type: CellType {
+        return .capture
+    }
 }
 
 protocol CaptureTableViewCellDelegate: class {

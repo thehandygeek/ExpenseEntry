@@ -4,7 +4,12 @@ import TPKeyboardAvoiding
 
 class ExpenseEntryTableViewController: UIViewController {
     
-    private let tableRows: [CellType] = [.date, .type, .amount, .capture]
+    enum TableRow: Int {
+        case company = 0, date = 1, type = 2, amount = 3, capture = 4
+    }
+    
+    private let tableRows: [TableRow] = [.company, .date, .type, .amount, .capture]
+    private let companyKey = "Company"
  
     private var expensesModel: ExpensesModel!
 
@@ -12,9 +17,19 @@ class ExpenseEntryTableViewController: UIViewController {
     private var enteredAmount = ""
     private var selectedType: ExpenseType = .meal
     private var recieptImage: UIImage?
+    private var companyExpanded = false
     private var dateExpanded = false
     private var typeExpanded = false
     
+    private let companyNameDict: [Company: String] = [.touchSciences: "Touch", .etp: "ETP", .hollandSunset: "Holland", .splashTravelling: "Splash"]
+    
+    private var companyNames: [String] {
+        return companyNameDict.map { $0.value }
+    }
+    private var expenseTypes: [String] {
+        return [ExpenseType.meal.rawValue, ExpenseType.auto.rawValue, ExpenseType.supplies.rawValue, ExpenseType.travel.rawValue]
+    }
+
     @IBOutlet weak var tableView: TPKeyboardAvoidingTableView!
     @IBOutlet weak var countLabel: UILabel!
 
@@ -22,10 +37,9 @@ class ExpenseEntryTableViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        expensesModel = ExpensesModel(eventTarget: self)
-        title = "Expense Entry \(ExpensesModel.companyDisplayValue)"
+        expensesModel = ExpensesModel(company: getSavedCompany(), eventTarget: self)
 
-        tableView.register(cellTypes: [.amount, .date, .type, .capture])
+        tableView.register(cellTypes: [.amount, .date, .picker, .capture])
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -66,6 +80,26 @@ class ExpenseEntryTableViewController: UIViewController {
     private func updateCount() {
         countLabel.text = "Record count: \(expensesModel.expenses.count)"
     }
+    
+    private func getSavedCompany() -> Company {
+        guard let savedCompanyName = UserDefaults.standard.string(forKey: companyKey) else { return .touchSciences }
+        return companyFrom(name: savedCompanyName)
+    }
+    
+    private func saveCompany(company: Company) {
+        let companyName = companyNameDict[company]
+        UserDefaults.standard.set(companyName, forKey: companyKey)
+    }
+    
+    private func companyFrom(name: String) -> Company {
+        guard let company = companyNameDict.first(where: { $0.value == name }) else { return .touchSciences }
+        
+        return company.key
+    }
+    
+    private func companyName(from company: Company) -> String {
+        return companyNameDict[company] ?? "Touch"
+    }
 }
 
 extension ExpenseEntryTableViewController: UITableViewDataSource {
@@ -77,11 +111,12 @@ extension ExpenseEntryTableViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let tableCell = tableView.dequeueReusableCell(withIdentifier: tableRows[indexPath.row].rawValue, for: indexPath) as? UITableViewCell & ConfigurableCell else {
+        guard let cellDetails = cellDetailsFor(row: indexPath.row) else { return UITableViewCell() }
+        guard let tableCell = tableView.dequeueReusableCell(withIdentifier: cellDetails.type.rawValue, for: indexPath) as? UITableViewCell & ConfigurableCell else {
             return UITableViewCell()
         }
         
-        tableCell.configure(with: cellDetailsFor(row: indexPath.row))
+        tableCell.configure(with: cellDetails)
         
         return tableCell
     }
@@ -115,14 +150,17 @@ extension ExpenseEntryTableViewController: UITableViewDataSource {
         }
     }
     
-    private func cellDetailsFor(row: Int) -> CellDetails {
-        switch tableRows[row] {
+    private func cellDetailsFor(row: Int) -> CellDetails? {
+        guard let tableRow = TableRow(rawValue: row) else { return nil }
+        switch tableRow {
+        case .company:
+            return PickerCellDetails(id: "Company", title: "Company", selectedValue: companyName(from:expensesModel.company), values: companyNames, expanded: companyExpanded, delegate: self)
         case .amount:
             return ExpenseAmountCellDetails(amount: enteredAmount, delegate: self)
         case .date:
             return DateCellDetails(date: selectedDate, expanded: dateExpanded, delegate: self)
         case .type:
-            return ExpenseTypeCellDetails(type: selectedType, expanded: typeExpanded, delegate: self)
+            return PickerCellDetails(id: "Type", title: "Type", selectedValue: selectedType.rawValue, values: expenseTypes, expanded: typeExpanded, delegate: self)
         case .capture:
             return CaptureCellDetails(image: recieptImage, delegate: self)
 
@@ -140,15 +178,26 @@ extension ExpenseEntryTableViewController: UITableViewDataSource {
 
 extension ExpenseEntryTableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if tableRows[indexPath.row] == CellType.date {
+        guard let tableRow = TableRow(rawValue: indexPath.row) else { return }
+        
+        if case .date = tableRow {
             dateExpanded.toggle()
-            if dateExpanded { typeExpanded = false }
+            typeExpanded = false
+            companyExpanded = false
             tableView.beginUpdates()
             tableView.reloadData()
             tableView.endUpdates()
-        } else if tableRows[indexPath.row] == CellType.type {
+        } else if case .company = tableRow {
+            companyExpanded.toggle()
+            typeExpanded = false
+            dateExpanded = false
+            tableView.beginUpdates()
+            tableView.reloadData()
+            tableView.endUpdates()
+        } else if case .type = tableRow {
             typeExpanded.toggle()
-            if typeExpanded { dateExpanded = false }
+            dateExpanded = false
+            companyExpanded = false
             tableView.beginUpdates()
             tableView.reloadData()
             tableView.endUpdates()
@@ -162,9 +211,13 @@ extension ExpenseEntryTableViewController: DateTableViewCellDelegate {
     }
 }
 
-extension ExpenseEntryTableViewController: ExpenseTypeTableViewCellDelegate {
-    func typeUpdated(type: ExpenseType) {
-        selectedType = type
+extension ExpenseEntryTableViewController: PickerTableViewCellDelegate {
+    func valueUpdated(id: String, value: String) {
+        if id == "Company" {
+            expensesModel = ExpensesModel(company: companyFrom(name: value), eventTarget: self)
+        } else if id == "Type" {
+            selectedType = ExpenseType(rawValue: value) ?? .meal
+        }
     }
 }
 

@@ -2,7 +2,7 @@ import UIKit
 
 enum CellType: String {
     case date = "DateTableViewCell"
-    case type = "ExpenseTypeTableViewCell"
+    case picker = "PickerTableViewCell"
     case amount = "ExpenseAmountTableViewCell"
     case capture = "CaptureTableViewCell"
 }

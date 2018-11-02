@@ -3,6 +3,10 @@ import UIKit
 struct ExpenseAmountCellDetails: CellDetails {
     let amount: String
     let delegate: ExpenseAmountTableViewCellDelegate
+    
+    var type: CellType {
+        return .amount
+    }
 }
 
 protocol ExpenseAmountTableViewCellDelegate: class {

@@ -16,8 +16,8 @@
 		FAA4DBD62028B1860022CEE4 /* UIViewController+Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA4DBD52028B1860022CEE4 /* UIViewController+Spinner.swift */; };
 		FAB27778217F47330096AD53 /* DateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB27776217F47330096AD53 /* DateTableViewCell.swift */; };
 		FAB27779217F47330096AD53 /* DateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB27777217F47330096AD53 /* DateTableViewCell.xib */; };
-		FAB2777C217F474D0096AD53 /* ExpenseTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB2777A217F474D0096AD53 /* ExpenseTypeTableViewCell.swift */; };
-		FAB2777D217F474D0096AD53 /* ExpenseTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB2777B217F474D0096AD53 /* ExpenseTypeTableViewCell.xib */; };
+		FAB2777C217F474D0096AD53 /* PickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB2777A217F474D0096AD53 /* PickerTableViewCell.swift */; };
+		FAB2777D217F474D0096AD53 /* PickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB2777B217F474D0096AD53 /* PickerTableViewCell.xib */; };
 		FAB27780217F47680096AD53 /* ExpenseAmountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB2777E217F47680096AD53 /* ExpenseAmountTableViewCell.swift */; };
 		FAB27781217F47680096AD53 /* ExpenseAmountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB2777F217F47680096AD53 /* ExpenseAmountTableViewCell.xib */; };
 		FAB27783217F4B5C0096AD53 /* ExpenseEntryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB27782217F4B5C0096AD53 /* ExpenseEntryTableViewController.swift */; };
@@ -51,8 +51,8 @@
 		FAA4DBD52028B1860022CEE4 /* UIViewController+Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Spinner.swift"; sourceTree = "<group>"; };
 		FAB27776217F47330096AD53 /* DateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTableViewCell.swift; sourceTree = "<group>"; };
 		FAB27777217F47330096AD53 /* DateTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DateTableViewCell.xib; sourceTree = "<group>"; };
-		FAB2777A217F474D0096AD53 /* ExpenseTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTypeTableViewCell.swift; sourceTree = "<group>"; };
-		FAB2777B217F474D0096AD53 /* ExpenseTypeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpenseTypeTableViewCell.xib; sourceTree = "<group>"; };
+		FAB2777A217F474D0096AD53 /* PickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTableViewCell.swift; sourceTree = "<group>"; };
+		FAB2777B217F474D0096AD53 /* PickerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickerTableViewCell.xib; sourceTree = "<group>"; };
 		FAB2777E217F47680096AD53 /* ExpenseAmountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseAmountTableViewCell.swift; sourceTree = "<group>"; };
 		FAB2777F217F47680096AD53 /* ExpenseAmountTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpenseAmountTableViewCell.xib; sourceTree = "<group>"; };
 		FAB27782217F4B5C0096AD53 /* ExpenseEntryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseEntryTableViewController.swift; sourceTree = "<group>"; };
@@ -156,8 +156,8 @@
 				FAB27787217F52450096AD53 /* ConfigurableCell.swift */,
 				FAB27776217F47330096AD53 /* DateTableViewCell.swift */,
 				FAB27777217F47330096AD53 /* DateTableViewCell.xib */,
-				FAB2777A217F474D0096AD53 /* ExpenseTypeTableViewCell.swift */,
-				FAB2777B217F474D0096AD53 /* ExpenseTypeTableViewCell.xib */,
+				FAB2777A217F474D0096AD53 /* PickerTableViewCell.swift */,
+				FAB2777B217F474D0096AD53 /* PickerTableViewCell.xib */,
 				FAB2777E217F47680096AD53 /* ExpenseAmountTableViewCell.swift */,
 				FAB2777F217F47680096AD53 /* ExpenseAmountTableViewCell.xib */,
 				FAB27789217F6E2F0096AD53 /* CaptureTableViewCell.swift */,
@@ -255,7 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2BC7DDD1E09B25F0040C489 /* LaunchScreen.storyboard in Resources */,
-				FAB2777D217F474D0096AD53 /* ExpenseTypeTableViewCell.xib in Resources */,
+				FAB2777D217F474D0096AD53 /* PickerTableViewCell.xib in Resources */,
 				FAB27781217F47680096AD53 /* ExpenseAmountTableViewCell.xib in Resources */,
 				D2BC7DDA1E09B25F0040C489 /* Assets.xcassets in Resources */,
 				D2BC7DD81E09B25F0040C489 /* Main.storyboard in Resources */,
@@ -316,7 +316,7 @@
 				D2BC7DD11E09B25F0040C489 /* AppDelegate.swift in Sources */,
 				FAB5B6D71E0ABE20005CC6F7 /* ExpenseReportTableViewController.swift in Sources */,
 				FA8F556320162DFF005C1127 /* Data+SHA.swift in Sources */,
-				FAB2777C217F474D0096AD53 /* ExpenseTypeTableViewCell.swift in Sources */,
+				FAB2777C217F474D0096AD53 /* PickerTableViewCell.swift in Sources */,
 				FAB27778217F47330096AD53 /* DateTableViewCell.swift in Sources */,
 				FAB2778B217F6E2F0096AD53 /* CaptureTableViewCell.swift in Sources */,
 				FAB27786217F4D480096AD53 /* UITableView+Register.swift in Sources */,
