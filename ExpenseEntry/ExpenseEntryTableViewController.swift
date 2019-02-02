@@ -214,7 +214,9 @@ extension ExpenseEntryTableViewController: DateTableViewCellDelegate {
 extension ExpenseEntryTableViewController: PickerTableViewCellDelegate {
     func valueUpdated(id: String, value: String) {
         if id == "Company" {
-            expensesModel = ExpensesModel(company: companyFrom(name: value), eventTarget: self)
+            let company = companyFrom(name: value)
+            expensesModel = ExpensesModel(company: company, eventTarget: self)
+            saveCompany(company: company)
         } else if id == "Type" {
             selectedType = ExpenseType(rawValue: value) ?? .meal
         }
