@@ -10,6 +10,7 @@ class ExpenseEntryTableViewController: UIViewController {
     
     private let tableRows: [TableRow] = [.company, .date, .type, .amount, .capture]
     private let companyKey = "Company"
+    private let documentTypes = [String(kUTTypeJPEG), String(kUTTypeGIF), String(kUTTypePNG)]
  
     private var expensesModel: ExpensesModel!
 
@@ -235,10 +236,26 @@ extension ExpenseEntryTableViewController: CaptureTableViewCellDelegate {
     }
     
     func selectAction(_ sender: UIButton) {
-        let importMenu = UIDocumentMenuViewController(documentTypes: [String(kUTTypeJPEG)], in: .import)
-        importMenu.delegate = self
-        importMenu.modalPresentationStyle = .formSheet
-        self.present(importMenu, animated: true, completion: nil)
+        let actionSheet = UIAlertController(title: "Select Source", message: nil, preferredStyle: .actionSheet)
+        let documentAction = UIAlertAction(title: "File", style: .default) { action in
+            let importMenu = UIDocumentMenuViewController(documentTypes: self.documentTypes, in: .import)
+            importMenu.delegate = self
+            importMenu.modalPresentationStyle = .formSheet
+            self.present(importMenu, animated: true, completion: nil)
+        }
+        let photoLibraryAction = UIAlertAction(title: "Photo Library", style: .default) { action in
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
+                let photoPicker = UIImagePickerController()
+                photoPicker.delegate = self
+                photoPicker.sourceType = .photoLibrary
+                
+                self.present(photoPicker, animated: true, completion: nil)
+            }
+        }
+        
+        actionSheet.addAction(documentAction)
+        actionSheet.addAction(photoLibraryAction)
+        self.present(actionSheet, animated: true, completion: nil)
     }
 }
 
@@ -281,4 +298,18 @@ extension ExpenseEntryTableViewController: UIDocumentMenuDelegate,UIDocumentPick
         dismiss(animated: true, completion: nil)
     }
     
+}
+
+extension ExpenseEntryTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            recieptImage = image
+            tableView.reloadData()
+        }
+        dismiss(animated: true, completion: nil)
+    }
 }
