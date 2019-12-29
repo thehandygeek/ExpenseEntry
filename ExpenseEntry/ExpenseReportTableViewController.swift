@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import ExpenseLibrary
 
 class ExpenseReportTableViewController: UITableViewController {
     
@@ -109,9 +110,9 @@ class ExpenseReportTableViewController: UITableViewController {
 
         // Configure the cell...
         let expenseEntry = expensesModel!.expenses[indexPath.row]
-        cell.dateLabel.text = expenseEntry.date
-        cell.typeLabel.text = expenseEntry.type
-        cell.amountLabel.text = expenseEntry.amount
+        cell.dateLabel.text = expenseEntry.dateString
+        cell.typeLabel.text = expenseEntry.type.rawValue
+        cell.amountLabel.text = expenseEntry.amountString
         
 
         return cell
@@ -133,7 +134,7 @@ class ExpenseReportTableViewController: UITableViewController {
             // Delete the row from the data source
             let expenseToDelete = expensesModel!.expenses[indexPath.row]
             let spinner = displaySpinner()
-            expensesModel!.deleteExpense(referenceId: expenseToDelete.referenceId) { success in
+            expensesModel!.deleteExpense(referenceId: expenseToDelete.id) { success in
                 self.removeSpinner(spinner: spinner)
             }
         }

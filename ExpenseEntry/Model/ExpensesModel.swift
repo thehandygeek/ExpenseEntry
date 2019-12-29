@@ -1,5 +1,6 @@
 import Foundation
 import SSZipArchive
+import ExpenseLibrary
 
 protocol ExpensesModelEvents: class {
     func expensesChanged(expenses: [ExpenseEntry])
@@ -22,10 +23,14 @@ class ExpensesModel {
     }
     
     func addExpense(type: ExpenseType, date: Date, amount: String, reciept: Data, completion: @escaping (Bool) -> Void) {
-        networkHelper.addExpense(type: type, date: date, amount: amount, companyId: company.rawValue) { expenseResult in
+        let expense = ExpenseEntry(amount: Decimal(string: amount) ?? Decimal(floatLiteral: 0.0),
+                                   date: date,
+                                   type: type,
+                                   company: company)
+        networkHelper.addExpense(expense: expense) { expenseResult in
             switch expenseResult {
             case let .success(result):
-                self.networkHelper.addReciept(expenseId: result!, imageData: reciept) { recieptResult in
+                self.networkHelper.addReciept(expenseId: result, imageData: reciept) { recieptResult in
                     completion(recieptResult)
                     self.fetchExpenses()
                 }
@@ -45,9 +50,9 @@ class ExpensesModel {
     }
     
     private func fetchExpenses() {
-        networkHelper.getExpenses(companyId: company.rawValue) { result in
+        networkHelper.getExpenses(company: company) { result in
             if case let .success(expenses) = result {
-                self.expenses = expenses!
+                self.expenses = expenses
                 self.eventTarget.expensesChanged(expenses: self.expenses)
                 if let target = self.secondaryEventTarget {
                     target.expensesChanged(expenses: self.expenses)

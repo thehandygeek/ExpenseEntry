@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "ExpenseLibrary",
+        "repositoryURL": "https://github.com/thehandygeek/ExpenseLibrary.git",
+        "state": {
+          "branch": null,
+          "revision": "20bfd521b56509077069192bb100ccbfbd2b5e11",
+          "version": "2.0.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,8 @@
 		D2BC7DD81E09B25F0040C489 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2BC7DD61E09B25F0040C489 /* Main.storyboard */; };
 		D2BC7DDA1E09B25F0040C489 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2BC7DD91E09B25F0040C489 /* Assets.xcassets */; };
 		D2BC7DDD1E09B25F0040C489 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2BC7DDB1E09B25F0040C489 /* LaunchScreen.storyboard */; };
+		FA4DF2CE23B7FC700014BB80 /* ExpenseLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = FA4DF2CD23B7FC700014BB80 /* ExpenseLibrary */; };
+		FA4DF2D023B8EE2A0014BB80 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4DF2CF23B8EE2A0014BB80 /* NetworkHelper.swift */; };
 		FA8F556320162DFF005C1127 /* Data+SHA.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8F556220162DFF005C1127 /* Data+SHA.swift */; };
 		FAA4DBD62028B1860022CEE4 /* UIViewController+Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA4DBD52028B1860022CEE4 /* UIViewController+Spinner.swift */; };
 		FAB27778217F47330096AD53 /* DateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB27776217F47330096AD53 /* DateTableViewCell.swift */; };
@@ -27,10 +29,8 @@
 		FAB2778C217F6E2F0096AD53 /* CaptureTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB2778A217F6E2F0096AD53 /* CaptureTableViewCell.xib */; };
 		FAB5B6D71E0ABE20005CC6F7 /* ExpenseReportTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB5B6D61E0ABE20005CC6F7 /* ExpenseReportTableViewController.swift */; };
 		FAB5B6D91E0ABF12005CC6F7 /* ExpenseEntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB5B6D81E0ABF12005CC6F7 /* ExpenseEntryTableViewCell.swift */; };
-		FABDDA88202496EA00B66872 /* NewtorkSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABDDA87202496EA00B66872 /* NewtorkSupport.swift */; };
 		FAEC39392020C00600CE5263 /* UIImage+Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEC39382020C00600CE5263 /* UIImage+Scale.swift */; };
 		FAFA23AB200FBE39006A4BBA /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFA23AA200FBE39006A4BBA /* CameraViewController.swift */; };
-		FAFA23AE200FC420006A4BBA /* ExpenseEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFA23AD200FC420006A4BBA /* ExpenseEntry.swift */; };
 		FAFA23B0200FC498006A4BBA /* ExpensesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFA23AF200FC498006A4BBA /* ExpensesModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +44,7 @@
 		D2BC7DD91E09B25F0040C489 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D2BC7DDC1E09B25F0040C489 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D2BC7DDE1E09B25F0040C489 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA4DF2CF23B8EE2A0014BB80 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		FA7559CD216EC41900E42219 /* ExpenseEntry.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ExpenseEntry.entitlements; sourceTree = "<group>"; };
 		FA8F555B201287E8005C1127 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		FA8F555E20162B61005C1127 /* ExpenseEntryBridging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExpenseEntryBridging.h; sourceTree = "<group>"; };
@@ -62,10 +63,8 @@
 		FAB2778A217F6E2F0096AD53 /* CaptureTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CaptureTableViewCell.xib; sourceTree = "<group>"; };
 		FAB5B6D61E0ABE20005CC6F7 /* ExpenseReportTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseReportTableViewController.swift; sourceTree = "<group>"; };
 		FAB5B6D81E0ABF12005CC6F7 /* ExpenseEntryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseEntryTableViewCell.swift; sourceTree = "<group>"; };
-		FABDDA87202496EA00B66872 /* NewtorkSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewtorkSupport.swift; sourceTree = "<group>"; };
 		FAEC39382020C00600CE5263 /* UIImage+Scale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Scale.swift"; sourceTree = "<group>"; };
 		FAFA23AA200FBE39006A4BBA /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
-		FAFA23AD200FC420006A4BBA /* ExpenseEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseEntry.swift; sourceTree = "<group>"; };
 		FAFA23AF200FC498006A4BBA /* ExpensesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -75,6 +74,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BE67CEBFE5E278DFD6DBFF4 /* Pods_ExpenseEntry.framework in Frameworks */,
+				FA4DF2CE23B7FC700014BB80 /* ExpenseLibrary in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,8 +144,8 @@
 			children = (
 				FA8F556220162DFF005C1127 /* Data+SHA.swift */,
 				FAEC39382020C00600CE5263 /* UIImage+Scale.swift */,
-				FABDDA87202496EA00B66872 /* NewtorkSupport.swift */,
 				FAA4DBD52028B1860022CEE4 /* UIViewController+Spinner.swift */,
+				FA4DF2CF23B8EE2A0014BB80 /* NetworkHelper.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -177,7 +177,6 @@
 		FAFA23AC200FC407006A4BBA /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				FAFA23AD200FC420006A4BBA /* ExpenseEntry.swift */,
 				FAFA23AF200FC498006A4BBA /* ExpensesModel.swift */,
 			);
 			path = Model;
@@ -201,6 +200,9 @@
 			dependencies = (
 			);
 			name = ExpenseEntry;
+			packageProductDependencies = (
+				FA4DF2CD23B7FC700014BB80 /* ExpenseLibrary */,
+			);
 			productName = ExpenseEntry;
 			productReference = D2BC7DCD1E09B25F0040C489 /* ExpenseEntry.app */;
 			productType = "com.apple.product-type.application";
@@ -236,10 +238,14 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
 			mainGroup = D2BC7DC41E09B25F0040C489;
+			packageReferences = (
+				FA4DF2CC23B7FC700014BB80 /* XCRemoteSwiftPackageReference "ExpenseLibrary" */,
+			);
 			productRefGroup = D2BC7DCE1E09B25F0040C489 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -320,14 +326,13 @@
 				FAB27778217F47330096AD53 /* DateTableViewCell.swift in Sources */,
 				FAB2778B217F6E2F0096AD53 /* CaptureTableViewCell.swift in Sources */,
 				FAB27786217F4D480096AD53 /* UITableView+Register.swift in Sources */,
+				FA4DF2D023B8EE2A0014BB80 /* NetworkHelper.swift in Sources */,
 				FAB27788217F52450096AD53 /* ConfigurableCell.swift in Sources */,
 				FAB5B6D91E0ABF12005CC6F7 /* ExpenseEntryTableViewCell.swift in Sources */,
 				FAEC39392020C00600CE5263 /* UIImage+Scale.swift in Sources */,
 				FAFA23B0200FC498006A4BBA /* ExpensesModel.swift in Sources */,
 				FAB27783217F4B5C0096AD53 /* ExpenseEntryTableViewController.swift in Sources */,
 				FAFA23AB200FBE39006A4BBA /* CameraViewController.swift in Sources */,
-				FABDDA88202496EA00B66872 /* NewtorkSupport.swift in Sources */,
-				FAFA23AE200FC420006A4BBA /* ExpenseEntry.swift in Sources */,
 				FAA4DBD62028B1860022CEE4 /* UIViewController+Spinner.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -458,7 +463,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -472,7 +478,10 @@
 				DEVELOPMENT_TEAM = R9G77R8PMG;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = ExpenseEntry/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.touchsciences.ExpenseEntry;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -491,7 +500,10 @@
 				DEVELOPMENT_TEAM = R9G77R8PMG;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = ExpenseEntry/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.touchsciences.ExpenseEntry;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -523,6 +535,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FA4DF2CC23B7FC700014BB80 /* XCRemoteSwiftPackageReference "ExpenseLibrary" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/thehandygeek/ExpenseLibrary.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FA4DF2CD23B7FC700014BB80 /* ExpenseLibrary */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA4DF2CC23B7FC700014BB80 /* XCRemoteSwiftPackageReference "ExpenseLibrary" */;
+			productName = ExpenseLibrary;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D2BC7DC51E09B25F0040C489 /* Project object */;
 }

@@ -1,6 +1,7 @@
 import UIKit
 import MobileCoreServices
 import TPKeyboardAvoiding
+import ExpenseLibrary
 
 class ExpenseEntryTableViewController: UIViewController {
     
@@ -252,9 +253,13 @@ extension ExpenseEntryTableViewController: CaptureTableViewCellDelegate {
                 self.present(photoPicker, animated: true, completion: nil)
             }
         }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { _ in
+            self.dismiss(animated: true, completion: nil)
+        }
         
         actionSheet.addAction(documentAction)
         actionSheet.addAction(photoLibraryAction)
+        actionSheet.addAction(cancelAction)
         self.present(actionSheet, animated: true, completion: nil)
     }
 }
